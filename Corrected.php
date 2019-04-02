@@ -82,7 +82,7 @@ class ShiftCenterRestResource extends ResourceBase {
 		return FALSE;
 	}
 
-	private function checkAccessShifts(&$access , &$shift_access $uid, $id)
+	private function checkAccessShifts(&$access , &$shift_access , $uid, $id)
 	{
 		// Check if user has access to see shifts below them.
 		$permission = $shift_access->getActionPermission($uid, 'action_shifts_view_bellow') || $shift_access->getActionPermission($uid, 'action_shifts_edit_bellow');
