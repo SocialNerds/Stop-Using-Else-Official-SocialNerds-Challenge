@@ -29,16 +29,21 @@ class ShiftCenterRestResource extends ResourceBase {
       $access = &drupal_static($variable);
 
       if(
-          $access ||
+          $access
+          ||
           $this->cache->get($variable)->data ||
           (
               $this->shiftAccess->getPositionSameGroup($uid, $id) &&
               (
                   $this->shiftAccess->getActionPermission($uid, 'action_shifts_edit_all') || $this->shiftAccess->getActionPermission($uid, 'action_shifts_view_all')
               )
-          ) ||
+          )
+          ||
           (
-              $this->shiftAccess->getActionPermission($uid, 'action_shifts_view_bellow') || $this->shiftAccess->getActionPermission($uid, 'action_shifts_edit_bellow') &&
+            (
+              $this->shiftAccess->getActionPermission($uid, 'action_shifts_view_bellow') || $this->shiftAccess->getActionPermission($uid, 'action_shifts_edit_bellow')
+            )
+            &&
               $this->shiftAccess->getPositionBelow($uid, $id)
           )
       ){
