@@ -25,7 +25,8 @@ class ShiftCenterRestResource extends ResourceBase
     {
         $key = $this->accessKeyGenerator($uid, $uid);
 
-        return $this->hasDrupalAccess($key) || $this->hasCachedAccess($key) ?? $this->checkActionPermissions($uid, $uid);
+        return $this->hasDrupalAccess($key) || $this->hasCachedAccess($key) ??
+               $this->checkActionPermissions($uid, $uid);
     }
 
     /**
@@ -37,7 +38,7 @@ class ShiftCenterRestResource extends ResourceBase
     private function checkActionPermissions(int $uid, int $id) : bool
     {
         $hasAccess = $this->shift_access->getPositionSameGroup($uid, $id) &&
-                  ($this->hasAccessToAllShifts($uid) || $this->hasAccessToSeeShiftsBelow($uid, $id));
+                     ($this->hasAccessToAllShifts($uid) || $this->hasAccessToSeeShiftsBelow($uid, $id));
 
         $cacheTime = $this->shiftTime->getTimestamp() + self::SHIFT_ACCESS_CACHE_TIME;
         $accessKey = $this->accessKeyGenerator($uid, $id);
