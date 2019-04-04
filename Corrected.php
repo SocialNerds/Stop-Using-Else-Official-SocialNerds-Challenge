@@ -43,6 +43,8 @@ class ShiftCenterRestResource extends ResourceBase
         $cacheTime = $this->shiftTime->getTimestamp() + self::SHIFT_ACCESS_CACHE_TIME;
         $accessKey = $this->accessKeyGenerator($uid, $id);
         $this->cache->set($accessKey, $hasAccess, $cacheTime);
+
+        return $hasAccess;
     }
 
     /**
