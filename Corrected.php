@@ -25,7 +25,7 @@ class ShiftCenterRestResource extends ResourceBase
     {
         $key = $this->accessKeyGenerator($uid, $uid);
 
-        return $this->hasDrupalAccess($key) || $this->hasCachedAccess($key) ??
+        return $this->hasDrupalVariableStorageAccess($key) || $this->hasCachedAccess($key) ??
                $this->checkActionPermissions($uid, $uid);
     }
 
@@ -80,7 +80,7 @@ class ShiftCenterRestResource extends ResourceBase
      *
      * @return bool
      */
-    private function hasDrupalAccess(string $key) : bool
+    private function hasDrupalVariableStorageAccess(string $key) : bool
     {
         return &drupal_static($key) ?? false;
     }
