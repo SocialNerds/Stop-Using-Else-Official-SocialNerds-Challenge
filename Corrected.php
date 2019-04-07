@@ -22,8 +22,9 @@ class ShiftCenterRestResource extends ResourceBase {
 
     if ($shift_access->getActionPermission($uid, 'action_shifts_edit_all') 
         || $shift_access->getActionPermission($uid, 'action_shifts_view_all') 
-        || (($shift_access->getActionPermission($uid, 'action_shifts_view_bellow') || $shift_access->getActionPermission($uid, 'action_shifts_edit_bellow')) 
-            && $shift_access->getPositionBelow($uid, $id);)) {
+        || (($shift_access->getActionPermission($uid, 'action_shifts_view_bellow') 
+	     || $shift_access->getActionPermission($uid, 'action_shifts_edit_bellow')) 
+           && $shift_access->getPositionBelow($uid, $id))) {
             return $this->duplicateExterminator(true,$variable);
     } 
     return $this->duplicateExterminator(false,$variable);
